@@ -13,7 +13,7 @@
             color: #333;
         }
         .container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 20px auto;
             padding: 20px;
             background: #fff;
@@ -23,106 +23,197 @@
         h1 {
             text-align: center;
             color: #4CAF50;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
+            font-size: 2.5em;
         }
-        .skills-section {
-            margin-bottom: 20px;
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
         }
-        .skills-section h2 {
-            font-size: 1.3em;
-            color: #333;
-            margin-bottom: 10px;
-            border-bottom: 2px solid #4CAF50;
-            display: inline-block;
-            padding-bottom: 5px;
+        .tab-btn {
+            background: #e8f5e9;
+            color: #2e7d32;
+            border: none;
+            outline: none;
+            padding: 12px 28px;
+            border-radius: 25px 25px 0 0;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
         }
-        ul {
-            list-style: none;
-            padding: 0;
+        .tab-btn.active, .tab-btn:hover {
+            background: #4CAF50;
+            color: #fff;
         }
-        ul li {
-            margin: 10px 0;
-            padding-left: 25px;
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s;
+            background: #f9f9fb;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            padding: 25px 20px 10px 20px;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .skill-tree, .skill-tree ul {
+            list-style-type: none;
+            padding-left: 20px;
+            margin: 0 0 10px 0;
+        }
+        .skill-tree > li {
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .skill-tree ul > li {
+            font-weight: 400;
+            margin-bottom: 4px;
             position: relative;
-            line-height: 1.6;
         }
-        ul li::before {
-            content: "✔";
-            position: absolute;
-            left: 0;
+        .skill-tree ul > li:before {
+            content: "⮞";
+            margin-right: 6px;
             color: #4CAF50;
-            font-size: 1.2em;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        @media (max-width: 600px) {
+            .tabs { flex-direction: column; align-items: stretch; }
+            .tab-btn { border-radius: 25px 25px 0 0; width: 100%; }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Technical Skills</h1>
-        <div class="skills-section">
+        <div class="tabs">
+            <button class="tab-btn active" onclick="showTab(0)">Automation Testing</button>
+            <button class="tab-btn" onclick="showTab(1)">Manual Testing</button>
+            <button class="tab-btn" onclick="showTab(2)">API Testing</button>
+        </div>
+        <div class="tab-content active">
             <h2>Automation Testing</h2>
-            <ul>
-                <li>Selenium WebDriver</li>
-                <li>TestNG</li>
-                <li>Maven</li>
-                <li>BDD Cucumber</li>
-                <li>Docker</li>
+            <ul class="skill-tree">
+                <li>Selenium WebDriver
+                    <ul>
+                        <li>Page Object Model</li>
+                        <li>Cross-browser Testing</li>
+                        <li>Web Element Locators</li>
+                        <li>Waits (Implicit/Explicit)</li>
+                    </ul>
+                </li>
+                <li>TestNG
+                    <ul>
+                        <li>Annotations</li>
+                        <li>Assertions</li>
+                        <li>Parallel Execution</li>
+                        <li>Test Suites</li>
+                    </ul>
+                </li>
+                <li>Maven
+                    <ul>
+                        <li>Dependency Management</li>
+                        <li>Build Lifecycle</li>
+                        <li>Plugins</li>
+                    </ul>
+                </li>
+                <li>BDD Cucumber
+                    <ul>
+                        <li>Gherkin Syntax</li>
+                        <li>Step Definitions</li>
+                        <li>Feature Files</li>
+                    </ul>
+                </li>
+                <li>Docker
+                    <ul>
+                        <li>Containerization</li>
+                        <li>Docker Compose</li>
+                        <li>Integration with Selenium Grid</li>
+                    </ul>
+                </li>
             </ul>
         </div>
-        <div class="skills-section">
+        <div class="tab-content">
             <h2>Manual Testing</h2>
-            <ul>
-                <li>Functional</li>
-                <li>Regression</li>
-                <li>Smoke</li>
-                <li>Sanity</li>
-                <li>Database Testing</li>
+            <ul class="skill-tree">
+                <li>Functional Testing
+                    <ul>
+                        <li>Requirement Analysis</li>
+                        <li>Test Case Design</li>
+                        <li>Test Execution</li>
+                    </ul>
+                </li>
+                <li>Regression Testing
+                    <ul>
+                        <li>Impact Analysis</li>
+                        <li>Re-testing</li>
+                    </ul>
+                </li>
+                <li>Smoke Testing
+                    <ul>
+                        <li>Basic Functionality Check</li>
+                    </ul>
+                </li>
+                <li>Sanity Testing
+                    <ul>
+                        <li>Quick Health Check</li>
+                    </ul>
+                </li>
+                <li>Database Testing
+                    <ul>
+                        <li>SQL Queries</li>
+                        <li>Data Validation</li>
+                        <li>Data Integrity</li>
+                    </ul>
+                </li>
             </ul>
         </div>
-        <div class="skills-section">
+        <div class="tab-content">
             <h2>API Testing</h2>
-            <ul>
-                <li>Postman</li>
-                <li>Insomnia</li>
-                <li>Swagger</li>
-                <li>Service Virtualization</li>
-            </ul>
-        </div>
-        <div class="skills-section">
-            <h2>Languages</h2>
-            <ul>
-                <li>Java</li>
-                <li>JavaScript</li>
-                <li>SQL</li>
-                <li>C</li>
-                <li>C++</li>
-            </ul>
-        </div>
-        <div class="skills-section">
-            <h2>CI/CD Tools</h2>
-            <ul>
-                <li>Jenkins</li>
-            </ul>
-        </div>
-        <div class="skills-section">
-            <h2>Version Control</h2>
-            <ul>
-                <li>Git</li>
-                <li>GitHub</li>
-            </ul>
-        </div>
-        <div class="skills-section">
-            <h2>Database</h2>
-            <ul>
-                <li>MySQL</li>
-                <li>Oracle</li>
-            </ul>
-        </div>
-        <div class="skills-section">
-            <h2>Test Management & Agile</h2>
-            <ul>
-                <li>JIRA (Scrum)</li>
+            <ul class="skill-tree">
+                <li>Postman
+                    <ul>
+                        <li>Collections</li>
+                        <li>Environment Variables</li>
+                        <li>Automated Tests</li>
+                    </ul>
+                </li>
+                <li>REST APIs
+                    <ul>
+                        <li>GET/POST/PUT/DELETE Methods</li>
+                        <li>Status Codes</li>
+                        <li>Headers & Authentication</li>
+                    </ul>
+                </li>
+                <li>JSON
+                    <ul>
+                        <li>Schema Validation</li>
+                        <li>Parsing & Assertions</li>
+                    </ul>
+                </li>
+                <li>SOAP
+                    <ul>
+                        <li>WSDL</li>
+                        <li>XML Requests</li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>
+    <script>
+        function showTab(idx) {
+            const tabs = document.querySelectorAll('.tab-btn');
+            const contents = document.querySelectorAll('.tab-content');
+            tabs.forEach((tab, i) => {
+                tab.classList.toggle('active', i === idx);
+                contents[i].classList.toggle('active', i === idx);
+            });
+        }
+    </script>
 </body>
 </html>

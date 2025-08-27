@@ -1,216 +1,390 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shakheer Mulla - QA Software Engineer Portfolio</title>
+    
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Typed.js for dynamic text animation -->
+    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
 
-        <link rel="stylesheet" href="assets/css/styles.css">
+    <!-- Lucide Icons for modern, clean icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 
-        <!-- =====BOX ICONS===== -->
-        <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
-        <link rel="icon" href="assets/img/logo.png">
-        <title>Portfolio Shakheer</title>
-    </head>
-    <body>
-        <!--===== HEADER =====-->
-        <header class="l-header">
-            <nav class="nav bd-grid">
-                <div>
-                    <a href="#" class="nav__logo">Shakheer Mulla</a>
+    <style>
+        /* Custom styles for the page */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0a; /* A very dark gray for the background */
+            color: #e2e8f0; /* A light gray for text */
+        }
+
+        /* Gradient text effect */
+        .gradient-text {
+            background: linear-gradient(90deg, #38bdf8, #818cf8, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Glassmorphism effect for cards */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Active navigation link style */
+        .nav-link.active {
+            color: #38bdf8; /* Bright blue for active link */
+        }
+        
+        /* Scrollbar styling for a modern look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1e293b;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #38bdf8;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0ea5e9;
+        }
+
+        /* Animation for elements fading in on scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Gemini AI Button Style */
+        .gemini-button {
+            background: linear-gradient(90deg, #818cf8, #c084fc);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        .gemini-button:hover {
+            box-shadow: 0 0 15px #c084fc80;
+            transform: scale(1.05);
+        }
+
+        /* Simple modal for messages */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+        }
+        .modal-content {
+            background: #1e293b;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            max-width: 500px;
+            width: 90%;
+            border: 1px solid #334155;
+        }
+
+        /* Spinner for loading state */
+        .spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid #fff;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header and Navigation -->
+    <header class="bg-black/60 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 border-b border-gray-800">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#home" class="text-2xl font-bold gradient-text">SM</a>
+            <nav class="hidden md:flex space-x-8 items-center">
+                <a href="#home" class="nav-link text-gray-300 hover:text-sky-400 transition duration-300">Home</a>
+                <a href="#skills" class="nav-link text-gray-300 hover:text-sky-400 transition duration-300">Skills</a>
+                <a href="#experience" class="nav-link text-gray-300 hover:text-sky-400 transition duration-300">Experience</a>
+                <a href="#education" class="nav-link text-gray-300 hover:text-sky-400 transition duration-300">Education</a>
+                <a href="#contact" class="nav-link text-gray-300 hover:text-sky-400 transition duration-300">Contact</a>
+            </nav>
+            <a href="#contact" class="hidden md:block bg-sky-500 hover:bg-sky-600 text-white font-semibold px-4 py-2 rounded-lg transition duration-300">Hire Me</a>
+            <button id="mobile-menu-button" class="md:hidden text-gray-300">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 flex flex-col space-y-4">
+            <a href="#home" class="nav-link text-gray-300 hover:text-sky-400 transition duration-300">Home</a>
+            <a href="#skills" class="nav-link text-gray-300 hover:text-sky-400 transition duration-300">Skills</a>
+            <a href="#experience" class="nav-link text-gray-300 hover:text-sky-400 transition duration-300">Experience</a>
+            <a href="#education" class="nav-link text-gray-300 hover:text-sky-400 transition duration-300">Education</a>
+            <a href="#contact" class="nav-link text-gray-300 hover:text-sky-400 transition duration-300">Contact</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6">
+
+        <!-- Home Section -->
+        <section id="home" class="min-h-screen flex items-center justify-center text-center pt-20">
+            <div class="max-w-4xl">
+                <img src="./assets/img/perfil.png" alt="Shakheer Mulla Portrait" class="w-40 h-40 rounded-full mx-auto mb-6 border-4 border-sky-500 shadow-lg">
+                <h1 class="text-4xl md:text-6xl font-extrabold mb-4">
+                    Hi, I'm Shakheer Mulla
+                </h1>
+                <p class="text-2xl md:text-3xl font-semibold mb-6">
+                    A <span id="typed-text" class="gradient-text"></span>
+                </p>
+                <p class="text-lg text-gray-400 max-w-2xl mx-auto mb-8">
+                    QA automation engineer with 3.8+ years of experience in Software testing. Experience in automating Web applications with Java Selenium Automation Framework based on Page Object Model (POM), TestNG & Maven, Cucumber. Strong knowledge on programming languages like Java, SQL.
+                </p>
+                <div class="flex justify-center space-x-4">
+                    <a href="#contact" class="bg-sky-500 hover:bg-sky-600 text-white font-bold py-3 px-6 rounded-lg transition duration-300 transform hover:scale-105">Get In Touch</a>
+                    <a href="#skills" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg transition duration-300 transform hover:scale-105">View My Skills</a>
                 </div>
+            </div>
+        </section>
 
-                <div class="nav__menu" id="nav-menu">
-                    <ul class="nav__list">
-                        <li class="nav__item"><a href="#home" class="nav__link active-link">Home</a></li>
-                        <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
-                        <li class="nav__item"><a href="#skills" class="nav__link">Skills</a></li>
-                        <li class="nav__item"><a href="#work" class="nav__link">Job</a></li>
-                        <li class="nav__item"><a href="#contact" class="nav__link">Contact</a></li>
+        <!-- Skills Section -->
+        <section id="skills" class="py-24">
+            <div class="text-center mb-12 reveal">
+                <h2 class="text-4xl font-bold">Technical <span class="gradient-text">Skills</span></h2>
+                <p class="text-gray-400 mt-2">My toolbox for ensuring software quality and reliability.</p>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                <!-- Skill Card Example -->
+                <div class="glass-card p-6 rounded-xl text-center reveal transform hover:-translate-y-2 transition-transform duration-300">
+                    <i data-lucide="code" class="mx-auto h-12 w-12 text-sky-400 mb-4"></i>
+                    <h3 class="text-xl font-semibold">Programming Language</h3>
+                    <p class="text-gray-400 text-sm mt-1">JAVA</p>
+                </div>
+                <div class="glass-card p-6 rounded-xl text-center reveal transform hover:-translate-y-2 transition-transform duration-300" style="transition-delay: 100ms;">
+                    <i data-lucide="database" class="mx-auto h-12 w-12 text-sky-400 mb-4"></i>
+                    <h3 class="text-xl font-semibold">Database</h3>
+                    <p class="text-gray-400 text-sm mt-1">Oracle SQL</p>
+                </div>
+                <div class="glass-card p-6 rounded-xl text-center reveal transform hover:-translate-y-2 transition-transform duration-300" style="transition-delay: 200ms;">
+                    <i data-lucide="wand" class="mx-auto h-12 w-12 text-sky-400 mb-4"></i>
+                    <h3 class="text-xl font-semibold">Selenium Web Driver</h3>
+                    <p class="text-gray-400 text-sm mt-1">Selenium with JAVA</p>
+                </div>
+                <div class="glass-card p-6 rounded-xl text-center reveal transform hover:-translate-y-2 transition-transform duration-300" style="transition-delay: 300ms;">
+                    <i data-lucide="box" class="mx-auto h-12 w-12 text-sky-400 mb-4"></i>
+                    <h3 class="text-xl font-semibold">Testing Framework</h3>
+                    <p class="text-gray-400 text-sm mt-1">POM+TESTNG+MAVEN+Cucumber (BDD)</p>
+                </div>
+                <div class="glass-card p-6 rounded-xl text-center reveal transform hover:-translate-y-2 transition-transform duration-300" style="transition-delay: 400ms;">
+                    <i data-lucide="tool" class="mx-auto h-12 w-12 text-sky-400 mb-4"></i>
+                    <h3 class="text-xl font-semibold">Other Tools & Tech</h3>
+                    <p class="text-gray-400 text-sm mt-1">JIRA, Jenkins, Postman, Git & GitHub, Rest Assured, Docker</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="py-24">
+            <div class="text-center mb-12 reveal">
+                <h2 class="text-4xl font-bold">Work <span class="gradient-text">Experience</span></h2>
+                <p class="text-gray-400 mt-2">My professional journey in quality assurance.</p>
+            </div>
+            <div class="relative border-l-2 border-sky-500/30 ml-6 md:ml-0 md:pl-0">
+                <!-- Experience Item -->
+                <div class="mb-10 ml-10 reveal experience-item">
+                    
+                    <p class="text-sm text-sky-400 font-semibold">December 2021 - Present</p>
+                    <h3 class="text-2xl font-bold mt-1">Automation Tester</h3>
+                    <p class="text-gray-400 mb-2">Cognizant Technology Solutions</p>
+                    <ul class="list-disc list-inside text-gray-400 space-y-1">
+                        <li>Automated Web application using Java and Selenium.</li>
+                        <li>Preparation of Test Scenarios and Test Cases based on requirements.</li>
+                        <li>Involved in Test Execution and retesting defects.</li>
+                        <li>Defect management.</li>
+                        <li>Knowledge transition to new team members.</li>
+                        <li>Attended sprint planning, sprint retrospective meetings.</li>
+                        <li>Actively interacted with developers to understand the automation requirements.</li>
+                        <li>Published automation execution results using extent reports to stakeholders.</li>
                     </ul>
                 </div>
+            </div>
+        </section>
 
-                <div class="nav__toggle" id="nav-toggle">
-                    <i class='bx bx-menu'></i>
+        <!-- Education Section -->
+        <section id="education" class="py-24">
+            <div class="text-center mb-12 reveal">
+                <h2 class="text-4xl font-bold"><span class="gradient-text">Education</span> & Certifications</h2>
+                <p class="text-gray-400 mt-2">My academic background and professional credentials.</p>
+            </div>
+            <div class="max-w-3xl mx-auto grid md:grid-cols-2 gap-8">
+                <div class="glass-card p-6 rounded-xl reveal">
+                    <i data-lucide="graduation-cap" class="h-10 w-10 text-sky-400 mb-3"></i>
+                    <h3 class="text-xl font-bold">Bachelor of Computer Applications (BCA) - 77%</h3>
+                    <p class="text-gray-400">BLDEA'S A S Patil College of Commerce (Autonomous), Vijayapura</p>
+                    <p class="text-sm text-gray-500 mt-1">2017 - 2020</p>
                 </div>
-            </nav>
-        </header>
-
-        <main class="l-main">
-            <!--===== HOME =====-->
-            <section class="home bd-grid" id="home">
-                <div class="home__data">
-                    <h1 class="home__title">Hi,<br>I'am <span class="home__title-color">Shakheer</span><br>SDET Engineer<br>at <span class="home__title-color">Cognizant</span><br></h1>
-
-                    <a href="#" class="button">Contact</a>
+                <div class="glass-card p-6 rounded-xl reveal" style="transition-delay: 100ms;">
+                    <i data-lucide="award" class="h-10 w-10 text-sky-400 mb-3"></i>
+                    <h3 class="text-xl font-bold">Certifications</h3>
+                    <ul class="list-disc list-inside text-gray-400 text-sm mt-1 space-y-1">
+                        <li>Jr SDET Certification - by IIHT</li>
+                        <li>Microsoft Azure Fundamentals AZ-900</li>
+                        <li>Awarded as Star Performer for automating test cases in lower environments</li>
+                    </ul>
                 </div>
+            </div>
+        </section>
 
-                <div class="home__social">
-                    <a href="https://www.linkedin.com/in/shakheer-mulla/" class="home__social-icon"><i class='bx bxl-linkedin'></i></a>
-                    <a href="https://www.instagram.com/Shakheer_mulla" class="home__social-icon"><i class='bx bxl-instagram' ></i></a>
-                    <a href="https://wa.me/919164065898" class="home__social-icon"><i class='bx bxl-whatsapp' ></i></a>
-                    <a href="https://github.com/Shakir-mulla" class="home__social-icon"><i class='bx bxl-github' ></i></a>
-                </div>
-
-                <div class="home__img">
-                    <svg class="home__blob" viewBox="0 0 479 467" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                        <mask id="mask0" mask-type="alpha">
-                            <path d="M9.19024 145.964C34.0253 76.5814 114.865 54.7299 184.111 29.4823C245.804 6.98884 311.86 -14.9503 370.735 14.143C431.207 44.026 467.948 107.508 477.191 174.311C485.897 237.229 454.931 294.377 416.506 344.954C373.74 401.245 326.068 462.801 255.442 466.189C179.416 469.835 111.552 422.137 65.1576 361.805C17.4835 299.81 -17.1617 219.583 9.19024 145.964Z"/>
-                        </mask>
-                        <g mask="url(#mask0)">
-                            <path d="M9.19024 145.964C34.0253 76.5814 114.865 54.7299 184.111 29.4823C245.804 6.98884 311.86 -14.9503 370.735 14.143C431.207 44.026 467.948 107.508 477.191 174.311C485.897 237.229 454.931 294.377 416.506 344.954C373.74 401.245 326.068 462.801 255.442 466.189C179.416 469.835 111.552 422.137 65.1576 361.805C17.4835 299.81 -17.1617 219.583 9.19024 145.964Z"/>
-                            <image class="home__blob-img" x="50" y="60" href="assets/img/perfil.png"/>
-                        </g>
-                    </svg>
-                </div>
-            </section>
-
-            <!--===== ABOUT =====-->
-            <section class="about section " id="about">
-                <h2 class="section-title">About</h2>
-
-                <div class="about__container bd-grid">
-                    <div class="about__img">
-                        <img src="assets/img/about.jpg" alt="">
+        <!-- Contact Section -->
+        <section id="contact" class="py-24">
+            <div class="text-center mb-12 reveal">
+                <h2 class="text-4xl font-bold">Get In <span class="gradient-text">Touch</span></h2>
+                <p class="text-gray-400 mt-2">Have a project in mind or just want to say hi? Feel free to reach out!</p>
+            </div>
+            <div class="max-w-2xl mx-auto glass-card p-8 rounded-xl reveal">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 text-center">
+                    <div class="flex items-center justify-center space-x-3">
+                        <i data-lucide="mail" class="h-8 w-8 text-sky-400"></i>
+                        <a href="mailto:shakirmulla96@gmail.com" class="text-lg text-gray-300 hover:text-sky-400 transition-colors">shakirmulla96@gmail.com</a>
                     </div>
-                    
-                    <div>
-                        <h2 class="about__subtitle">I'm Shakheer Mulla</h2>
-                        <p class="about__text">Detail-oriented Senior QA Test Engineer with 3.7+ years of experience in software testing and quality assurance at Cognizant. Skilled in automation testing using Selenium Java and BDD frameworks such as Cucumber, TestNG, with strong expertise in CI/CD tools like Jenkins and Docker. Proficient in JavaScript, Git, and GitHub for effective code management and collaboration, leveraging tools such as Maven for optimized build processes. Known for delivering reliable and efficient test solutions that enhance software performance and reliability.</p>
-                    </div>                                   
-                </div>
-            </section>
-
-            <!--===== SKILLS =====-->
-            <section class="skills section" id="skills">
-                <h2 class="section-title">Skills</h2>
-
-                <div class="skills__container bd-grid">          
-                    <div>
-                        <h2 class="skills__subtitle">Professional Skills</h2>
-                        <p class="skills__text">Skilled in Selenium Java, JavaScript, Maven, and BDD Cucumber, etc.</p>
-                        <div class="skills__data">
-                            <div class="skills__names">
-                                <i class='bx bxl-html5 skills__icon'></i>
-                                <span class="skills__name">Selenium Java</span>
-                            </div>
-                            <div class="skills__bar skills__html"></div>
-                            <div>
-                                <span class="skills__percentage">95%</span>
-                            </div>
-                        </div>
-                        <div class="skills__data">
-                            <div class="skills__names">
-                                <i class='bx bxl-css3 skills__icon'></i>
-                                <span class="skills__name">JavaScript</span>
-                            </div>
-                            <div class="skills__bar skills__css"></div>
-                            <div>
-                                <span class="skills__percentage">80%</span>
-                            </div>
-                        </div>
-                        <div class="skills__data">
-                            <div class="skills__names">
-                                <i class='bx bxl-javascript skills__icon'></i>
-                                <span class="skills__name">SQL</span>
-                            </div>
-                            <div class="skills__bar skills__js"></div>
-                            <div>
-                                <span class="skills__percentage">85%</span>
-                            </div>
-                        </div>
-                        <div class="skills__data">
-                            <div class="skills__names">
-                                <i class='bx bxs-paint skills__icon'></i>
-                                <span class="skills__name">API Testing</span>
-                            </div>
-                            <div class="skills__bar skills__ux"></div>
-                            <div>
-                                <span class="skills__percentage">90%</span>
-                            </div>
-                        </div>
+                    <div class="flex items-center justify-center space-x-3">
+                        <i data-lucide="phone" class="h-8 w-8 text-sky-400"></i>
+                        <a href="tel:+918217853326" class="text-lg text-gray-300 hover:text-sky-400 transition-colors">+91 8217853326</a>
                     </div>
-                    
-                    <div class="skills__image-container">
-                        <div class="skills__image-wrapper">
-                            <img src="assets/img/work3.jpg" alt="" class="skills__img">
-                            <div class="skills__overlay">
-                                <p class="skills__overlay-text">Explore My Skills</p>
-                            </div>
-                        </div>
+                    <div class="flex items-center justify-center space-x-3">
+                        <i data-lucide="message-square" class="h-8 w-8 text-sky-400"></i>
+                        <a href="https://wa.me/918217853326?text=Hey%20hi%20Shakheer" target="_blank" rel="noopener noreferrer" class="text-lg text-gray-300 hover:text-sky-400 transition-colors">WhatsApp</a>
                     </div>
+                    <div class="flex items-center justify-center space-x-3">
+                        <i data-lucide="instagram" class="h-8 w-8 text-sky-400"></i>
+                        <a href="https://www.instagram.com/shakheer_mulla/" target="_blank" rel="noopener noreferrer" class="text-lg text-gray-300 hover:text-sky-400 transition-colors">@shakheer_mulla</a> <!-- Placeholder Instagram handle, please update -->
+                    </div>
+                    <!-- You can add more contact options here -->
                 </div>
-            </section>
+            </div>
+        </section>
+    </main>
 
-            <!--===== WORK =====-->
-<section class="work section" id="work">
-    <h2 class="section-title">Job</h2>
-
-    <div class="work__container bd-grid">
-        <a href="resume.html" class="work__img">
-            <img src="assets/img/work1.jpg" alt="Resume">
-            <div class="work__overlay">
-                <p class="work__text">Resume</p>
+    <!-- Footer -->
+    <footer class="border-t border-gray-800 mt-20">
+        <div class="container mx-auto px-6 py-8 text-center text-gray-400">
+            <div class="flex justify-center space-x-6 mb-4">
+                <a href="https://github.com/Shakir-mulla" class="hover:text-sky-400 transition duration-300"><i data-lucide="github" class="h-6 w-6"></i></a>
+                <a href="https://www.linkedin.com/in/shakheer-mulla/" class="hover:text-sky-400 transition duration-300"><i data-lucide="linkedin" class="h-6 w-6"></i></a>
+                <a href="https://x.com/shakirm7866" class="hover:text-sky-400 transition duration-300"><i data-lucide="twitter" class="h-6 w-6"></i></a>
             </div>
-        </a>
-        <a href="experience.html" class="work__img">
-            <img src="assets/img/work2.jpg" alt="Experience">
-            <div class="work__overlay">
-                <p class="work__text">Experience</p>
-            </div>
-        </a>
-        <a href="https://github.com/Shakir-mulla" class="work__img" target="_blank">
-            <img src="assets/img/work3.jpg" alt="Projects">
-            <div class="work__overlay">
-                <p class="work__text">Projects</p>
-            </div>
-        </a>
-        <a href="skills.html" class="work__img">
-            <img src="assets/img/work4.jpg" alt="Skills">
-            <div class="work__overlay">
-                <p class="work__text">Skills</p>
-            </div>
-        </a>
-        <a href="contact-details.html" class="work__img">
-            <img src="assets/img/work5.jpg" alt="Contact Details">
-            <div class="work__overlay">
-                <p class="work__text">Contact Details</p>
-            </div>
-        </a>
-        <a href="education.html" class="work__img">
-            <img src="assets/img/work6.jpg" alt="Education">
-            <div class="work__overlay">
-                <p class="work__text">Education</p>
-            </div>
-        </a>
+            <p>&copy; 2024 Shakheer Mulla. All Rights Reserved.</p>
+        </div>
+    </footer>
+    
+    <!-- Modal for messages -->
+    <div id="message-modal" class="modal-overlay hidden">
+        <div class="modal-content text-center">
+            <h3 id="modal-title" class="text-2xl font-bold mb-4"></h3>
+            <p id="modal-text" class="text-gray-300 mb-6"></p>
+            <button id="modal-close-btn" class="bg-sky-500 hover:bg-sky-600 text-white font-bold py-2 px-6 rounded-lg">Close</button>
+        </div>
     </div>
-</section>
-
-            <!--===== CONTACT =====-->
-            <section class="contact section" id="contact">
-                <h2 class="section-title">Contact</h2>
-
-                <div class="contact__container bd-grid">
-                    <form action="" class="contact__form">
-                        <input type="text" placeholder="Name" class="contact__input">
-                        <input type="mail" placeholder="Email" class="contact__input">
-                        <textarea name="" id="" cols="0" rows="10" class="contact__input"></textarea>
-                        <input type="button" value="Submit" class="contact__button button">
-                    </form>
-                </div>
-            </section>
-        </main>
-
-        <!--===== FOOTER =====-->
-        <footer class="footer">
-            <p class="footer__title">Shakheer</p>
-            <p class="footer__copy">&#169; Shakheer. All rigths reserved</p>
-        </footer>
 
 
-        <!--===== SCROLL REVEAL =====-->
-        <script src="https://unpkg.com/scrollreveal"></script>
+    <script>
+        // --- Lucide Icons Initialization ---
+        lucide.createIcons();
 
-        <!--===== MAIN JS =====-->
-        <script src="assets/js/main.js"></script>
-    </body>
+        // --- Typed.js Initialization ---
+        var typed = new Typed('#typed-text', {
+            strings: ['QA Automation Engineer.', 'Test Automation Expert.', 'Bug Hunter.', 'Quality Advocate.'],
+            typeSpeed: 50,
+            backSpeed: 30,
+            loop: true,
+            backDelay: 2000,
+        });
+
+        // --- Mobile Menu Toggle ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // --- Active Nav Link on Scroll ---
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        
+        // --- Scroll Reveal Animation ---
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        revealElements.forEach(el => revealObserver.observe(el));
+        
+        // --- Modal Logic ---
+        const modal = document.getElementById('message-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalText = document.getElementById('modal-text');
+        const modalCloseBtn = document.getElementById('modal-close-btn');
+
+        function showModal(title, text) {
+            modalTitle.textContent = title;
+            modalText.textContent = text;
+            modal.classList.remove('hidden');
+        }
+
+        modalCloseBtn.addEventListener('click', () => modal.classList.add('hidden'));
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.add('hidden');
+            }
+        });
+
+    </script>
+</body>
 </html>

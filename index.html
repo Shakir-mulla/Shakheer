@@ -191,6 +191,9 @@
         .skill-tree li:hover {
             transform: scale(1.02); /* Slight scale on hover */
             color: #38bdf8; /* Highlight text on hover */
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            cursor: pointer;
         }
 
 
@@ -240,6 +243,9 @@
         .skill-tree ul li:hover {
             transform: scale(1.02); /* Slight scale on hover */
             color: #818cf8; /* Highlight text on hover */
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            cursor: pointer;
         }
 
         /* Staggered animation for sub-list items */
@@ -866,6 +872,44 @@
         // Initialize the first tab as active when the page loads
         document.addEventListener('DOMContentLoaded', () => {
             showTab(0);
+
+            // --- Make all skill tree items open Google search on click ---
+            function getDirectText(el) {
+                // Get only the direct text node content (ignore nested <ul> text)
+                let text = '';
+                el.childNodes.forEach(node => {
+                    if (node.nodeType === Node.TEXT_NODE) {
+                        text += node.textContent.trim();
+                    }
+                });
+                return text.trim();
+            }
+
+            document.querySelectorAll('.skill-tree li').forEach(item => {
+                const keyword = getDirectText(item);
+                if (keyword) {
+                    item.addEventListener('click', (e) => {
+                        e.stopPropagation(); // Prevent parent li from also triggering
+
+                        // Build contextual search: if this is a nested sub-item,
+                        // prepend the parent topic text for a precise search.
+                        // e.g. "Annotations" under "TestNG" → searches "TestNG Annotations"
+                        let searchQuery = keyword;
+                        const parentUl = item.parentElement; // direct parent <ul>
+                        if (parentUl && parentUl.tagName === 'UL') {
+                            const parentLi = parentUl.parentElement; // grandparent <li>
+                            if (parentLi && parentLi.tagName === 'LI') {
+                                const parentText = getDirectText(parentLi);
+                                if (parentText) {
+                                    searchQuery = parentText + ' ' + keyword;
+                                }
+                            }
+                        }
+
+                        window.open('https://www.google.com/search?q=' + encodeURIComponent(searchQuery), '_blank');
+                    });
+                }
+            });
         });
 
     </script>

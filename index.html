@@ -262,6 +262,31 @@
             font-size: 1em;
         }
 
+        @keyframes spinBorder {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes floatBadge {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-6px) scale(1.04); }
+        }
+
+        .skill-badge {
+            position: absolute;
+            padding: 0.3rem 0.65rem;
+            border-radius: 0.5rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            border: 1px solid;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            white-space: nowrap;
+            animation: floatBadge 3s ease-in-out infinite;
+            z-index: 5;
+            letter-spacing: 0.03em;
+        }
+
     </style>
 </head>
 <body class="antialiased">
@@ -303,7 +328,26 @@
         <!-- Home Section -->
         <section id="home" class="min-h-screen flex items-center justify-center text-center pt-20">
             <div class="max-w-4xl">
-                <img src="./assets/img/perfil.png" alt="Portrait of Shakheer Mulla" class="w-40 h-40 rounded-full mx-auto mb-6 border-4 border-sky-500 shadow-lg">
+
+                <!-- Modern Profile Photo -->
+                <div class="relative inline-flex items-center justify-center mb-10" style="width: 240px; height: 240px;">
+                    <!-- Outer glow (blurred, behind) -->
+                    <div style="position:absolute;inset:0;border-radius:9999px;background:conic-gradient(from 0deg,#38bdf8,#818cf8,#c084fc,#f472b6,#38bdf8);animation:spinBorder 4s linear infinite;filter:blur(18px);opacity:0.55;"></div>
+                    <!-- Spinning gradient border -->
+                    <div style="position:absolute;inset:0;border-radius:9999px;background:conic-gradient(from 0deg,#38bdf8,#818cf8,#c084fc,#f472b6,#38bdf8);animation:spinBorder 4s linear infinite;"></div>
+                    <!-- Dark gap -->
+                    <div style="position:absolute;top:5px;left:5px;right:5px;bottom:5px;border-radius:9999px;background:#0a0a0a;z-index:1;"></div>
+                    <!-- Profile photo -->
+                    <img src="./assets/img/perfil.png" alt="Portrait of Shakheer Mulla"
+                         style="position:relative;width:192px;height:192px;border-radius:9999px;object-fit:cover;object-position:top center;z-index:2;">
+
+                    <!-- Floating skill badges (hidden on small screens) -->
+                    <span class="skill-badge hidden sm:block" style="top:10px;right:-60px;background:rgba(56,189,248,0.12);border-color:rgba(56,189,248,0.55);color:#38bdf8;animation-delay:0s;">☕ Java</span>
+                    <span class="skill-badge hidden sm:block" style="bottom:35px;right:-72px;background:rgba(129,140,248,0.12);border-color:rgba(129,140,248,0.55);color:#818cf8;animation-delay:0.6s;">🔧 Selenium</span>
+                    <span class="skill-badge hidden sm:block" style="bottom:5px;left:-45px;background:rgba(192,132,252,0.12);border-color:rgba(192,132,252,0.55);color:#c084fc;animation-delay:1.2s;">✅ QA</span>
+                    <span class="skill-badge hidden sm:block" style="top:35px;left:-70px;background:rgba(56,189,248,0.12);border-color:rgba(56,189,248,0.55);color:#38bdf8;animation-delay:1.8s;">🧪 TestNG</span>
+                    <span class="skill-badge hidden sm:block" style="top:-8px;left:30px;background:rgba(52,211,153,0.12);border-color:rgba(52,211,153,0.55);color:#34d399;animation-delay:2.4s;">☁️ AWS</span>
+                </div>
                 <h1 class="text-4xl md:text-6xl font-extrabold mb-4">
                     Hi, I'm Shakheer Mulla
                 </h1>

@@ -19,6 +19,7 @@
     <!-- Lucide Icons for modern, clean icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
+
     <style>
         /* Custom styles for the page */
         body {
@@ -260,6 +261,7 @@
             font-weight: normal;
             font-size: 1em;
         }
+
     </style>
 </head>
 <body class="antialiased">
@@ -275,7 +277,10 @@
                 <a href="#education" class="nav-link text-gray-300 hover:text-sky-400 transition duration-300">Education</a>
                 <a href="#contact" class="nav-link text-gray-300 hover:text-sky-400 transition duration-300">Contact</a>
             </nav>
-            <div class="hidden md:flex space-x-4">
+            <div class="hidden md:flex space-x-4 items-center">
+                <a href="https://in.linkedin.com/in/shakheer-mulla" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-sky-400 transition duration-300" title="LinkedIn">
+                    <i data-lucide="linkedin" class="h-6 w-6"></i>
+                </a>
                 <a href="#contact" class="bg-sky-500 hover:bg-sky-600 text-white font-semibold px-4 py-2 rounded-lg transition duration-300">Hire Me</a>
             </div>
             <button id="mobile-menu-button" class="md:hidden text-gray-300">
@@ -306,7 +311,7 @@
                     A <span id="typed-text" class="gradient-text"></span>
                 </p>
                 <p class="text-lg text-gray-400 max-w-2xl mx-auto mb-8">
-                    QA Automation Engineer with 3.8+ years of experience in software testing and automation. Proficient in designing and implementing scalable automation frameworks using Java, Selenium, TestNG, Maven, and Cucumber (POM-based). Skilled in CI/CD integration with Jenkins and containerization using Docker. Strong knowledge of Java and SQL with hands-on expertise in version control using Git/GitHub and building robust test solutions for web applications.
+                    QA Automation Engineer with 4.5+ years of experience in software testing and automation. Proficient in designing and implementing scalable automation frameworks using Java, Selenium, TestNG, Maven, and Cucumber (POM-based). Skilled in CI/CD integration with Jenkins and containerization using Docker. Strong knowledge of Java and SQL with hands-on expertise in version control using Git/GitHub and building robust test solutions for web applications.
                 </p>
                 <div class="flex justify-center space-x-4">
                     <a href="#contact" class="bg-sky-500 hover:bg-sky-600 text-white font-bold py-3 px-6 rounded-lg transition duration-300 transform hover:scale-105">Get In Touch</a>
@@ -343,6 +348,9 @@
                     </button>
                     <button class="tab-btn" onclick="showTab(6)">
                         <i data-lucide="trello"></i> Test Management & Agile
+                    </button>
+                    <button class="tab-btn" onclick="window.location.href='dsa-plan.html'">
+                        <i data-lucide="file-spreadsheet"></i> Java DSA
                     </button>
                 </div>
                 <div class="tab-content active" id="tab-content-0">
@@ -572,12 +580,31 @@
                 <p class="text-gray-400 mt-2">My professional journey in quality assurance.</p>
             </div>
             <div class="relative border-l-2 border-sky-500/30 ml-6 md:ml-0 md:pl-0">
-                <!-- Experience Item -->
+                <!-- Experience Item - OpenText -->
+                <div class="mb-10 ml-10 reveal experience-item">
+
+                    <h4 class="text-2xl font-bold mt-1">Quality Assurance Engineer</h4>
+                    <p class="text-gray-400 mb-2">OpenText</p>
+                    <p class="text-sm text-sky-400 font-semibold">October 2025 - Present</p>
+                    <ul class="list-disc list-inside text-gray-400 space-y-1">
+                        <li>Performing end-to-end QA testing for OpenText Operations Bridge Manager (OBM) application.</li>
+                        <li>Executing CLI-based testing on Linux environments to validate backend services and configurations.</li>
+                        <li>Testing deployment and infrastructure on AWS cloud (EC2, S3, CloudWatch) for OBM components.</li>
+                        <li>Building and maintaining CI/CD pipelines using GitLab CI for automated test execution and reporting.</li>
+                        <li>Automating web UI test scenarios for OBM dashboards and monitoring consoles using Selenium.</li>
+                        <li>Validating event management, topology, and performance monitoring modules of OBM.</li>
+                        <li>Writing and executing shell scripts on Linux for test data setup and environment configuration.</li>
+                        <li>Performing API testing for OBM REST endpoints to verify integrations and data flows.</li>
+                        <li>Collaborating with cross-functional teams in Agile sprints for continuous quality improvement.</li>
+                    </ul>
+                </div>
+
+                <!-- Experience Item - Cognizant -->
                 <div class="mb-10 ml-10 reveal experience-item">
                     
                     <h4 class="text-2xl font-bold mt-1">QA Automation Engineer</h4>
                     <p class="text-gray-400 mb-2">Cognizant Technology Solutions</p>
-                    <p class="text-sm text-sky-400 font-semibold">December 2021 - Present</p>
+                    <p class="text-sm text-sky-400 font-semibold">December 2021 - September 2025</p>
                     <ul class="list-disc list-inside text-gray-400 space-y-1">
                         <li>Automated Web application using Java and Selenium.</li>
                         <li>Preparation of Test Scenarios and Test Cases based on requirements.</li>
@@ -641,6 +668,16 @@
                         <i data-lucide="instagram" class="h-8 w-8 text-sky-400"></i>
                         <a href="https://www.instagram.com/shakheer_mulla/" target="_blank" rel="noopener noreferrer" class="text-lg text-gray-300 hover:text-sky-400 transition-colors">@shakheer_mulla</a>
                     </div>
+                    <div class="flex items-center justify-center space-x-3">
+                        <a href="https://in.linkedin.com/in/shakheer-mulla" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-3 text-gray-300 hover:text-sky-400 transition-colors group">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-sky-400 group-hover:text-sky-300 transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                                <rect x="2" y="9" width="4" height="12"></rect>
+                                <circle cx="4" cy="4" r="2"></circle>
+                            </svg>
+                            <span class="text-lg">LinkedIn</span>
+                        </a>
+                    </div>
                     <!-- You can add more contact options here -->
                 </div>
             </div>
@@ -652,7 +689,7 @@
         <div class="container mx-auto px-6 py-8 text-center text-gray-400">
             <div class="flex justify-center space-x-6 mb-4">
                 <a href="https://github.com/Shakir-mulla" class="hover:text-sky-400 transition duration-300"><i data-lucide="github" class="h-6 w-6"></i></a>
-                <a href="https://www.linkedin.com/in/shakheer-mulla/" class="hover:text-sky-400 transition duration-300"><i data-lucide="linkedin" class="h-6 w-6"></i></a>
+                <a href="https://in.linkedin.com/in/shakheer-mulla" target="_blank" rel="noopener noreferrer" class="hover:text-sky-400 transition duration-300"><i data-lucide="linkedin" class="h-6 w-6"></i></a>
                 <a href="https://x.com/shakirm7866" class="hover:text-sky-400 transition duration-300"><i data-lucide="twitter" class="h-6 w-6"></i></a>
             </div>
             <p>&copy; 2025 Shakheer Mulla. All Rights Reserved.</p>
@@ -780,6 +817,7 @@
             }
             lucide.createIcons(); // Re-create icons for newly visible elements
         }
+
 
         // Initialize the first tab as active when the page loads
         document.addEventListener('DOMContentLoaded', () => {
